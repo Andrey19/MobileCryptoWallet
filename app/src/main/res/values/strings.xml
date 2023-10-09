@@ -1,3 +1,47 @@
 <resources>
     <string name="app_name">MobileCryptoWallet</string>
+    <string name="login">Login</string>
+    <string name="registr">Register</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="home">Home</string>
+    <string name="empty_cryptos">There are no cryptos.</string>
+    <string name="ok">OK</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_conform_password">Conform Password</string>
+    <string name="hint_user_name">User name</string>
+    <string name="hint_login">Login</string>
+    <string name="hint_register">Register</string>
+    <string name="hint_posts">Posts</string>
+    <string name="auth_error">Authentication Error. Try Again</string>
+    <string name="register_error">Registration Error. Try Again</string>
+    <string name="wallets">Wallets page</string>
+    <string name="menu_remove">Remove</string>
+    <string name="menu_add_crypto">Add Crypto</string>
+    <string name="menu_view">View</string>
+    <string name="menu_edit">Edit</string>
+    <string name="error_loading">Something went wrong. Try again later</string>
+    <string name="retry_loading">Retry</string>
+    <string name="add_wallet">Add wallet</string>
+    <string name="empty_wallets">There are no wallets.</string>
+    <string name="wallet">Your Wallets</string>
+    <string name="wallet_name">Wallet Name</string>
+    <string name="wallet_description">Description</string>
+    <string name="wallet_crypto_count">Cryptos Count</string>
+    <string name="wallet_crypto_cost">Cryptos Cost</string>
+    <string name="hint_wallet_name">Wallet Name</string>
+    <string name="hint_wallet_description">Wallet Description</string>
+    <string name="menu_save">Save</string>
+    <string name="menu_update">Update</string>
+    <string name="menu_back">Back</string>
+    <string name="hint_crypto_name">Crypto Name</string>
+    <string name="hint_crypto_description">Crypto Description</string>
+    <string name="hint_crypto_type">Crypto Type</string>
+    <string name="hint_crypto_amount">Crypto Amount</string>
+    <string name="crypto_name">Crypto Name</string>
+    <string name="crypto_type">Crypto Name</string>
+    <string name="crypto_description">Crypto Description</string>
+    <string name="crypto_amount">Crypto Amount</string>
+    <string name="crypto_cost">Cryptos Cost</string>
+
+
 </resources>

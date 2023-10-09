@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:title="@string/home"
+        app:showAsAction="never" />
+
+    <group android:id="@+id/unauthenticated">
+        <item
+            android:id="@+id/login"
+            android:title="@string/login"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/signin"
+            android:title="@string/registr"
+            app:showAsAction="never" />
+
+
+    </group>
+    <group android:id="@+id/authenticated">
+        <item
+            android:id="@+id/signout"
+            android:title="@string/sign_out"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/wallets"
+            android:title="@string/wallet"
+            app:showAsAction="never" />
+    </group>
+
+</menu>
+

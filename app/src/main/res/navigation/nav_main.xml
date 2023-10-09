@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/feedFragment">
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.ar11.mobilecryptowallet.activity.FeedFragment"
+        android:label="FeedFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ar11.mobilecryptowallet.activity.LoginFragment"
+        android:label="LoginFragment" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.ar11.mobilecryptowallet.activity.RegisterFragment"
+        android:label="register_fragment"
+        tools:layout="@layout/register_fragment" />
+    <fragment
+        android:id="@+id/walletsFragment"
+        android:name="com.ar11.mobilecryptowallet.activity.WalletsFragment"
+        android:label="WalletsFragment" />
+    <fragment
+        android:id="@+id/addWalletFragment"
+        android:name="com.ar11.mobilecryptowallet.activity.AddWalletFragment"
+        android:label="AddWalletFragment" />
+    <fragment
+        android:id="@+id/viewWalletFragment"
+        android:name="com.ar11.mobilecryptowallet.activity.ViewWalletFragment"
+        android:label="ViewWalletFragment" />
+</navigation>
