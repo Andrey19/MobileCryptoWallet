@@ -29,4 +29,20 @@
         android:id="@+id/viewWalletFragment"
         android:name="com.ar11.mobilecryptowallet.activity.ViewWalletFragment"
         android:label="ViewWalletFragment" />
+    <fragment
+        android:id="@+id/editWalletFragment"
+        android:name="com.ar11.mobilecryptowallet.activity.EditWalletFragment"
+        android:label="EditWalletFragment" />
+    <fragment
+        android:id="@+id/editCryptoWalletFragment"
+        android:name="com.ar11.mobilecryptowallet.activity.EditCryptoWalletFragment"
+        android:label="EditCryptoWalletFragment" />
+    <fragment
+        android:id="@+id/viewCryptoWalletFragment"
+        android:name="com.ar11.mobilecryptowallet.activity.ViewCryptoWalletFragment"
+        android:label="ViewCryptoWalletFragment" />
+    <fragment
+        android:id="@+id/addCryptoWalletFragment"
+        android:name="com.ar11.mobilecryptowallet.activity.AddCryptoWalletFragment"
+        android:label="AddCryptoWalletFragment" />
 </navigation>

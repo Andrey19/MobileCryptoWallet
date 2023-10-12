@@ -10,6 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.ar11.mobilecryptowallet.R
 import com.ar11.mobilecryptowallet.activity.AddWalletFragment.Companion.userId
+import com.ar11.mobilecryptowallet.activity.EditWalletFragment.Companion.userIdEdit
+import com.ar11.mobilecryptowallet.activity.EditWalletFragment.Companion.walletNameEdit
 import com.ar11.mobilecryptowallet.adapter.WalletOnInteractionListener
 import com.ar11.mobilecryptowallet.adapter.WalletsAdapter
 import com.ar11.mobilecryptowallet.auth.AppAuth
@@ -41,13 +43,13 @@ class WalletsFragment : Fragment() {
             override fun onEdit(wallet: WalletsModel) {
                 viewModel.setNewOrEdit(wallet)
 
-//                findNavController().navigate(
-//                    R.id.editWalletFragment,
-//                    Bundle().apply {
-//                        userIdEdit = wallet.userId
-//                        walletNameEdit = wallet.walletName
-//                    }
-//                )
+                findNavController().navigate(
+                    R.id.editWalletFragment,
+                    Bundle().apply {
+                        userIdEdit = wallet.userId
+                        walletNameEdit = wallet.walletName
+                    }
+                )
             }
 
             override fun onView(wallet: WalletsModel) {
@@ -56,8 +58,8 @@ class WalletsFragment : Fragment() {
                 findNavController().navigate(
                     R.id.viewWalletFragment,
                     Bundle().apply {
-//                        userIdEdit = wallet.userId
-//                        walletNameEdit = wallet.walletName
+                        userIdEdit = wallet.userId
+                        walletNameEdit = wallet.walletName
                     }
                 )
             }

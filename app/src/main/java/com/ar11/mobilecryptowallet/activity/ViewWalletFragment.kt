@@ -9,8 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.ar11.mobilecryptowallet.R
+import com.ar11.mobilecryptowallet.adapter.CryptoInWalletAdapter
+import com.ar11.mobilecryptowallet.adapter.OnCryptoInteractionListener
 import com.ar11.mobilecryptowallet.auth.AppAuth
 import com.ar11.mobilecryptowallet.databinding.FragmentWalletViewBinding
+import com.ar11.mobilecryptowallet.dto.CryptosModel
 import com.ar11.mobilecryptowallet.util.StringArg
 import com.ar11.mobilecryptowallet.viewmodel.WalletsViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -53,25 +56,25 @@ class ViewWalletFragment : Fragment() {
         binding.cryptosCostValue.text = wallet?.cryptosCost.toString()
 
 
-//        val adapter = CryptoInWalletAdapter(object : OnCryptoInteractionListener {
-//            override fun onEdit(crypto: CryptosModel) {
-//
-//            }
-//            override fun onRemove(crypto: CryptosModel) {
-//
-//            }
-//            override fun onView(crypto: CryptosModel) {
-//
-//            }
-//
-//            override fun isMenuActive(): Boolean {
-//                return false
-//            }
-//
-//        })
-//        binding.list.adapter = adapter
-//
-//        adapter.submitList(wallet?.cryptocurrenciesList)
+        val adapter = CryptoInWalletAdapter(object : OnCryptoInteractionListener {
+            override fun onEdit(crypto: CryptosModel) {
+
+            }
+            override fun onRemove(crypto: CryptosModel) {
+
+            }
+            override fun onView(crypto: CryptosModel) {
+
+            }
+
+            override fun isMenuActive(): Boolean {
+                return false
+            }
+
+        })
+        binding.list.adapter = adapter
+
+        adapter.submitList(wallet?.cryptocurrenciesList)
 
         viewModel.updatedWallet.observe(viewLifecycleOwner) {
             findNavController().navigateUp()
