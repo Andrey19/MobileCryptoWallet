@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ProjectFragment">
+
+    <TextView
+        android:id="@+id/projectName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Project name"
+        android:textSize="16sp"
+        android:layout_gravity="top|start" />
+
+    <TextView
+        android:id="@+id/projectDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Project Description"
+        android:textSize="16sp"
+        android:layout_gravity="bottom|end" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher_wallet"
+        android:layout_gravity="center" />
+
+
+</FrameLayout>

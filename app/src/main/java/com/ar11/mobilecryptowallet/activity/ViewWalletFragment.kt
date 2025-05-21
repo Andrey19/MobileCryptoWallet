@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.ar11.mobilecryptowallet.R
 import com.ar11.mobilecryptowallet.adapter.CryptoInWalletAdapter
 import com.ar11.mobilecryptowallet.adapter.OnCryptoInteractionListener
-import com.ar11.mobilecryptowallet.auth.AppAuth
 import com.ar11.mobilecryptowallet.databinding.FragmentWalletViewBinding
 import com.ar11.mobilecryptowallet.dto.CryptosModel
 import com.ar11.mobilecryptowallet.util.StringArg
@@ -19,7 +18,6 @@ import com.ar11.mobilecryptowallet.viewmodel.WalletsViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -30,9 +28,6 @@ class ViewWalletFragment : Fragment() {
         var Bundle.userIdView: String? by StringArg
         var Bundle.walletNameView: String? by StringArg
     }
-
-    @Inject
-    lateinit var auth: AppAuth
 
     private val viewModel: WalletsViewModel by activityViewModels()
 
@@ -89,6 +84,7 @@ class ViewWalletFragment : Fragment() {
                     .show()
             }
         }
+
 
         binding.menu.setOnClickListener {
             PopupMenu(it.context, it).apply {

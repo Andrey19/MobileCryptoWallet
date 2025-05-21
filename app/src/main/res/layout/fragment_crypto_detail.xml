@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.CryptoDetailFragment">
+
+    <TextView
+        android:id="@+id/cryptoName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crypto Name"
+        android:textSize="16sp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="5dp"
+        />
+
+    <TextView
+        android:id="@+id/cryptoDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crypto Description"
+        android:textSize="16sp"
+        android:layout_gravity="top|start"
+        android:layout_marginTop="40sp"
+        android:layout_marginStart="5dp"
+        />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/ic_launcher_wallet"
+        android:layout_gravity="center" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="back"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"/>
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:layout_gravity="bottom|center"
+        />
+
+
+
+</FrameLayout>

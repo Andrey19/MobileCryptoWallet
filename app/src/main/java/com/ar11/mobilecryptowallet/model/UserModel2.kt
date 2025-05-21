@@ -1,6 +1,6 @@
 package com.ar11.mobilecryptowallet.model
 
-data class UserModel(
+data class UserModel2 (
     val email: String = "",
     val name: String = "",
     val avatar: String = "",
@@ -9,5 +9,4 @@ data class UserModel(
     val isAdmin: Boolean = false,
     val role: String = "",
 )
-
 

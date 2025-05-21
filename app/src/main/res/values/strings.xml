@@ -42,6 +42,7 @@
     <string name="crypto_description">Crypto Description</string>
     <string name="crypto_amount">Crypto Amount</string>
     <string name="crypto_cost">Cryptos Cost</string>
+    <string name="updatePrice">Update Price</string>
 
 
 </resources>

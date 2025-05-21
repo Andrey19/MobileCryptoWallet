@@ -111,6 +111,7 @@
                 tools:listitem="@layout/card_wallet" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

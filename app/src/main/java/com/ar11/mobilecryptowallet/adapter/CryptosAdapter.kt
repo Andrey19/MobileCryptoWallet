@@ -1,9 +1,7 @@
 package com.ar11.mobilecryptowallet.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -14,8 +12,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
 interface OnInteractionListener {
-
+    fun onView(crypto: Cryptos) {}
 }
+
+
 
 class CryptosAdapter(
     private val onInteractionListener: OnInteractionListener,
@@ -41,7 +41,12 @@ class CryptoViewHolder(
 
             cryptoName.text = crypto.cryptoName
             cryptoDescription.text = crypto.cryptoDescription
-            cryptoCost.text = crypto.cryptoCost.toString()
+            cryptoCost.text =  crypto.cryptoCost.toString() + " $ "
+
+            root.setOnClickListener {
+                onInteractionListener.onView(crypto)
+            }
+
 
 
             if (crypto.imageUrl.isNotEmpty()) {

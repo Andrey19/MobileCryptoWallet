@@ -7,11 +7,18 @@
         android:title="@string/home"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/about"
+        android:title="About"
+        app:showAsAction="never" />
+
+
     <group android:id="@+id/unauthenticated">
         <item
-            android:id="@+id/login"
-            android:title="@string/login"
+            android:id="@+id/login2"
+            android:title="Login"
             app:showAsAction="never" />
+
         <item
             android:id="@+id/signin"
             android:title="@string/registr"
@@ -21,12 +28,21 @@
     </group>
     <group android:id="@+id/authenticated">
         <item
+            android:id="@+id/user_info"
+            android:title="User Info"
+            app:showAsAction="never" />
+
+        <item
             android:id="@+id/signout"
             android:title="@string/sign_out"
             app:showAsAction="never" />
         <item
             android:id="@+id/wallets"
             android:title="@string/wallet"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/updatePrice"
+            android:title="@string/updatePrice"
             app:showAsAction="never" />
     </group>
 

@@ -1,10 +1,10 @@
 package com.ar11.mobilecryptowallet.api
 
 import com.ar11.mobilecryptowallet.BuildConfig
-import com.ar11.mobilecryptowallet.auth.AppAuth
+import com.ar11.mobilecryptowallet.auth.AppAuth2
 import okhttp3.Interceptor
-import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.Response
+import okhttp3.logging.HttpLoggingInterceptor
 
 
 fun loggingInterceptor() = HttpLoggingInterceptor()
@@ -21,8 +21,8 @@ fun loggingInterceptor() = HttpLoggingInterceptor()
 //        }
 //    }
 
-fun authInterceptor(auth: AppAuth) = fun(chain: Interceptor.Chain): Response {
-    auth.authStateFlow.value.token?.let { token ->
+fun authInterceptor(auth2: AppAuth2) = fun(chain: Interceptor.Chain): Response {
+    auth2.authStateFlow2.value.token?.let { token ->
         val newRequest = chain.request().newBuilder()
             .addHeader("token", token)
             .build()
@@ -31,3 +31,4 @@ fun authInterceptor(auth: AppAuth) = fun(chain: Interceptor.Chain): Response {
 
     return chain.proceed(chain.request())
 }
+

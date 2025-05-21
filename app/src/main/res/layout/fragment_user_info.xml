@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.UserInfoFragment">
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints="User Name"
+        android:inputType="text"
+        android:text="User name"
+        android:textSize="16sp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="5dp"
+        />
+
+
+    <TextView
+        android:id="@+id/userEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User email"
+        android:textSize="16sp"
+        android:layout_gravity="top|start"
+        android:layout_marginTop="40sp"
+        android:layout_marginStart="5dp"
+        />
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_person"
+        android:layout_gravity="center" />
+
+    <Button
+        android:id="@+id/updateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Button"
+        android:layout_gravity="bottom|center"
+        />
+
+
+
+
+</FrameLayout>

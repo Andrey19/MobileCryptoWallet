@@ -3,17 +3,25 @@ package com.ar11.mobilecryptowallet.api
 import com.ar11.mobilecryptowallet.BuildConfig
 import com.ar11.mobilecryptowallet.dto.CryptoInWalletRequest
 import com.ar11.mobilecryptowallet.dto.Cryptos
+import com.ar11.mobilecryptowallet.dto.ImageModel
+import com.ar11.mobilecryptowallet.dto.Project
 import com.ar11.mobilecryptowallet.dto.WalletsModel
-import com.ar11.mobilecryptowallet.model.TokenModel
-import com.ar11.mobilecryptowallet.model.UserModel
+import com.ar11.mobilecryptowallet.model.TokenModel2
+import com.ar11.mobilecryptowallet.model.UserModel2
 import okhttp3.Interceptor
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.*
-
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Query
 
 
 private const val BASE_URL = "${BuildConfig.BASE_URL}/api/"
@@ -37,11 +45,24 @@ interface ApiService {
     @GET("cryptos")
     suspend fun getAll(): Response<List<Cryptos>>
 
+    @GET("projects")
+    suspend fun getAllProject(): Response<List<Project>>
+
+    @GET("user")
+    suspend fun getUser(@Query("email") email: String): Response<UserModel2>
+
+    @POST("crypto/mobile")
+    suspend fun saveCryptoInfo(@Body crypto: Cryptos): Response<Cryptos>
+
+    @POST("cryptos")
+    suspend fun updatePrice(): Response<List<Cryptos>>
+
     @POST("user/mobile/login")
-    suspend fun userLogin(@Body user: UserModel): Response<TokenModel>
+    suspend fun userLogin2(@Body user: UserModel2): Response<TokenModel2>
 
     @POST("user/mobile/register")
-    suspend fun userRegister(@Body user: UserModel): Response<TokenModel>
+    suspend fun userRegister(@Body user: UserModel2): Response<TokenModel2>
+
     @GET("wallets")
     suspend fun getWallets(@Query("email") email: String): Response<List<WalletsModel>>
 
@@ -59,6 +80,14 @@ interface ApiService {
 
     @PUT("wallet/crypto")
     suspend fun updateCryptoInWallet(@Body cryptoToWallet: CryptoInWalletRequest): Response<WalletsModel>
+
+    @PUT("user/mobile")
+    suspend fun updateUserInfo(@Body user: UserModel2): Response<UserModel2>
+
+    @Multipart
+    @POST("image")
+    suspend fun uploadAvatar(@Part file: MultipartBody.Part): Response<ImageModel>
+
 
     @DELETE("wallet/crypto/mobile")
     suspend fun deleteCryptoInWallet(@Query("email") userId: String, @Query("walletName") walletName: String,

@@ -60,6 +60,16 @@ class CryptoViewModel @Inject constructor(
             .asLiveData(Dispatchers.Default)
     }
 
+    fun updatePrice() = viewModelScope.launch {
+        try {
+            _dataState.value = CryptosModelState(refreshingPrice = true)
+            repository.updatePrice()
+            _dataState.value = CryptosModelState()
+        } catch (e: Exception) {
+            _dataState.value = CryptosModelState(error = true)
+        }
+    }
+
     fun refreshCryptos() = viewModelScope.launch {
         try {
             _dataState.value = CryptosModelState(refreshing = true)

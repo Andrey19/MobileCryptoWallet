@@ -14,7 +14,7 @@ import com.ar11.mobilecryptowallet.activity.EditWalletFragment.Companion.userIdE
 import com.ar11.mobilecryptowallet.activity.EditWalletFragment.Companion.walletNameEdit
 import com.ar11.mobilecryptowallet.adapter.WalletOnInteractionListener
 import com.ar11.mobilecryptowallet.adapter.WalletsAdapter
-import com.ar11.mobilecryptowallet.auth.AppAuth
+import com.ar11.mobilecryptowallet.auth.AppAuth2
 import com.ar11.mobilecryptowallet.databinding.FragmentWalletsBinding
 import com.ar11.mobilecryptowallet.dto.WalletsModel
 import com.ar11.mobilecryptowallet.viewmodel.WalletsViewModel
@@ -28,7 +28,7 @@ import javax.inject.Inject
 class WalletsFragment : Fragment() {
 
     @Inject
-    lateinit var auth: AppAuth
+    lateinit var auth2: AppAuth2
 
     private val viewModel: WalletsViewModel by activityViewModels()
 
@@ -77,13 +77,14 @@ class WalletsFragment : Fragment() {
             if (state.error) {
                 Snackbar.make(binding.root, R.string.error_loading, Snackbar.LENGTH_LONG)
                     .setAction(R.string.retry_loading) {
-                        if (auth.authStateFlow.value.email != null) {
-                            viewModel.loadWallets(auth.authStateFlow.value.email!!)
+                        if (auth2.authStateFlow2.value.email != null) {
+                            viewModel.loadWallets(auth2.authStateFlow2.value.email!!)
                         }
 
                     }
                     .show()
             }
+
         }
 
         viewModel.deletedWallet.observe(viewLifecycleOwner) {
@@ -97,19 +98,21 @@ class WalletsFragment : Fragment() {
         }
 
         binding.swiperefresh.setOnRefreshListener {
-            viewModel.refreshWallets(auth.authStateFlow.value.email!!)
+            viewModel.refreshWallets(auth2.authStateFlow2.value.email!!)
         }
 
+
         binding.fab.setOnClickListener {
-            viewModel.setNewOrEdit(WalletsModel(userId = auth.authStateFlow.value.email!!))
+            viewModel.setNewOrEdit(WalletsModel(userId = auth2.authStateFlow2.value.email!!))
 
             findNavController().navigate(
                 R.id.addWalletFragment,
                 Bundle().apply {
-                    userId = auth.authStateFlow.value.email!!
+                    userId = auth2.authStateFlow2.value.email!!
                 }
             )
         }
+
 
         return binding.root
     }

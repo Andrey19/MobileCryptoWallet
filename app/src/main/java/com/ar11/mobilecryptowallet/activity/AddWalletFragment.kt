@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.ar11.mobilecryptowallet.R
-import com.ar11.mobilecryptowallet.auth.AppAuth
 import com.ar11.mobilecryptowallet.databinding.FragmentWalletAddBinding
 import com.ar11.mobilecryptowallet.dto.WalletsModel
 import com.ar11.mobilecryptowallet.util.AndroidUtils
@@ -18,7 +17,6 @@ import com.ar11.mobilecryptowallet.viewmodel.WalletsViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -29,8 +27,6 @@ class AddWalletFragment : Fragment() {
         var Bundle.userId: String? by StringArg
     }
 
-    @Inject
-    lateinit var auth: AppAuth
 
     private val viewModel: WalletsViewModel by activityViewModels()
 

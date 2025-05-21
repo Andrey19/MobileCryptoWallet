@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.ar11.mobilecryptowallet.auth.AppAuth
+import com.ar11.mobilecryptowallet.auth.AppAuth2
 import com.ar11.mobilecryptowallet.dto.CryptoInWalletRequest
 import com.ar11.mobilecryptowallet.dto.WalletsModel
 import com.ar11.mobilecryptowallet.model.WalletsModelState
@@ -44,11 +44,11 @@ private val emptyCrypto = CryptoInWalletRequest(
 @HiltViewModel
 class WalletsViewModel @Inject constructor(
     private val repository: CryptoRepository,
-    private val auth: AppAuth,
+    private val auth2: AppAuth2,
 ) : ViewModel() {
 
-    val data: LiveData<List<WalletsModel>> = auth
-        .authStateFlow
+    val data: LiveData<List<WalletsModel>> = auth2
+        .authStateFlow2
         .flatMapLatest { user ->
             repository.walletsData
                 .map { wallets ->
@@ -104,10 +104,11 @@ class WalletsViewModel @Inject constructor(
         get() = _deletedWallet
 
     init {
-        if (auth.authStateFlow.value.email != null) {
-            loadWallets(auth.authStateFlow.value.email!!)
+        if (auth2.authStateFlow2.value.email != null) {
+            loadWallets(auth2.authStateFlow2.value.email!!)
         }
     }
+
 
     fun setNewOrEdit(wallet: WalletsModel?) {
         if (wallet == null) {

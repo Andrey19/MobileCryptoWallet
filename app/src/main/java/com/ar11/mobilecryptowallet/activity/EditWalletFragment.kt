@@ -17,7 +17,6 @@ import com.ar11.mobilecryptowallet.activity.ViewCryptoWalletFragment.Companion.u
 import com.ar11.mobilecryptowallet.activity.ViewCryptoWalletFragment.Companion.walletNameViewCrypto
 import com.ar11.mobilecryptowallet.adapter.CryptoInWalletAdapter
 import com.ar11.mobilecryptowallet.adapter.OnCryptoInteractionListener
-import com.ar11.mobilecryptowallet.auth.AppAuth
 import com.ar11.mobilecryptowallet.databinding.FragmentWalletEditBinding
 import com.ar11.mobilecryptowallet.dto.CryptoInWalletRequest
 import com.ar11.mobilecryptowallet.dto.CryptosModel
@@ -27,7 +26,6 @@ import com.ar11.mobilecryptowallet.util.StringArg
 import com.ar11.mobilecryptowallet.viewmodel.WalletsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -38,9 +36,6 @@ class EditWalletFragment : Fragment() {
         var Bundle.userIdEdit: String? by StringArg
         var Bundle.walletNameEdit: String? by StringArg
     }
-
-    @Inject
-    lateinit var auth: AppAuth
 
     private val viewModel: WalletsViewModel by activityViewModels()
 

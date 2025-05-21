@@ -12,34 +12,28 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 @ExperimentalCoroutinesApi
 @HiltViewModel
-class RegisterViewModel @Inject constructor(
+class Login2ViewModel @Inject constructor(
     private val repository: CryptoRepository,
     private val auth2: AppAuth2,
-) : ViewModel() {
+): ViewModel() {
+    private val _userLogin2 = SingleLiveEvent<Boolean>()
+
+    val userLogin2: LiveData<Boolean>
+        get() = _userLogin2
 
 
-    private val _userRegister = SingleLiveEvent<Boolean>()
-
-    val userRegister: LiveData<Boolean>
-        get() = _userRegister
-
-
-    fun usersRegister(login: String, password: String, name: String) {
+    fun usersLogin2(login: String, password: String) {
         viewModelScope.launch {
             try {
-                val response = repository.userRegister(
-                    UserModel2(email = login, password = password,
-                name = name)
-                )
+                val response = repository.userLogin2(UserModel2(email = login, password = password))
                 auth2.setAuth2(response.email, response.name,response.avatarUrl, response.token)
-                _userRegister.value = true
+                _userLogin2.value = true
             } catch (e: Exception) {
-                _userRegister.value = false
+                _userLogin2.value = false
             }
         }
     }
-
-
 }

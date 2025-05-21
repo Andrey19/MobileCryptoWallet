@@ -10,8 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
 import androidx.navigation.findNavController
 import com.ar11.mobilecryptowallet.R
-import com.ar11.mobilecryptowallet.auth.AppAuth
-import com.ar11.mobilecryptowallet.viewmodel.AuthViewModel
+import com.ar11.mobilecryptowallet.auth.AppAuth2
+import com.ar11.mobilecryptowallet.viewmodel.Auth2ViewModel
+import com.ar11.mobilecryptowallet.viewmodel.CryptoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
@@ -22,16 +23,20 @@ import javax.inject.Inject
 class AppActivity : AppCompatActivity(R.layout.activity_app) {
 
     @Inject
-    lateinit var auth: AppAuth
+    lateinit var auth2: AppAuth2
 
-    private val viewModelAuth: AuthViewModel by viewModels()
+    private val viewModelAuth2: Auth2ViewModel by viewModels()
+
+    private val viewModelCrypto: CryptoViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModelAuth.data.observe(this) {
+
+        viewModelAuth2.data2.observe(this) {
             invalidateOptionsMenu()
         }
+
 
         val context = this
         addMenuProvider(object : MenuProvider {
@@ -41,22 +46,16 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                 menuInflater.inflate(R.menu.menu_main, menu)
 
                 menu.let {
-                    it.setGroupVisible(R.id.unauthenticated, !viewModelAuth.authenticated)
-                    it.setGroupVisible(R.id.authenticated, viewModelAuth.authenticated)
+                    it.setGroupVisible(R.id.unauthenticated, !viewModelAuth2.authenticated)
+                    it.setGroupVisible(R.id.authenticated, viewModelAuth2.authenticated)
                 }
+
 
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem):
                     Boolean =
                 when (menuItem.itemId) {
-                    R.id.login -> {
-                        findNavController(R.id.nav_host_fragment)
-                            .navigate(
-                                R.id.loginFragment
-                            )
-                        true
-                    }
                     R.id.signin -> {
                         findNavController(R.id.nav_host_fragment)
                             .navigate(
@@ -71,11 +70,37 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                             )
                         true
                     }
+                    R.id.user_info -> {
+                        findNavController(R.id.nav_host_fragment)
+                            .navigate(
+                                R.id.userInfoFragment
+                            )
+                        true
+                    }
+
+                    R.id.about -> {
+                        findNavController(R.id.nav_host_fragment)
+                            .navigate(
+                                R.id.projectFragment
+                            )
+                        true
+                    }
+                    R.id.login2 -> {
+                        findNavController(R.id.nav_host_fragment)
+                            .navigate(
+                                R.id.login2Fragment
+                            )
+                        true
+                    }
                     R.id.wallets -> {
                         findNavController(R.id.nav_host_fragment)
                             .navigate(
                                 R.id.walletsFragment
                             )
+                        true
+                    }
+                    R.id.updatePrice -> {
+                        viewModelCrypto.updatePrice()
                         true
                     }
                     R.id.signout -> {
@@ -87,7 +112,7 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                         builder.setPositiveButton("Yes") {
                                 _, _ ->
                             run {
-                                auth.removeAuth()
+                                auth2.removeAuth2()
                                 findNavController(R.id.nav_host_fragment)
                                     .navigate(
                                         R.id.feedFragment

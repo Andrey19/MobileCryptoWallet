@@ -35,7 +35,7 @@ class RegisterFragment: Fragment() {
 
         registerViewModel.userRegister.observe(viewLifecycleOwner) {
             if (it) {
-                findNavController().navigateUp()
+                findNavController().navigate(R.id.userInfoFragment)
             } else {
                 Snackbar.make(binding.root, R.string.register_error, Snackbar.LENGTH_INDEFINITE)
                     .setAction(R.string.ok) { }

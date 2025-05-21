@@ -14,4 +14,7 @@ object DaoModule {
     fun provideCryptoDao(db: AppDb): CryptoDao = db.cryptoDao()
     @Provides
     fun provideWalletsDao(db: AppDb): WalletsDao = db.walletsDao()
+    @Provides
+    fun provideProjectDao(db: AppDb): ProjectDao = db.projectDao()
+
 }

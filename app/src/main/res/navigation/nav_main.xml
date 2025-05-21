@@ -9,10 +9,6 @@
         android:name="com.ar11.mobilecryptowallet.activity.FeedFragment"
         android:label="FeedFragment" />
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.ar11.mobilecryptowallet.activity.LoginFragment"
-        android:label="LoginFragment" />
-    <fragment
         android:id="@+id/registerFragment"
         android:name="com.ar11.mobilecryptowallet.activity.RegisterFragment"
         android:label="register_fragment"
@@ -45,4 +41,24 @@
         android:id="@+id/addCryptoWalletFragment"
         android:name="com.ar11.mobilecryptowallet.activity.AddCryptoWalletFragment"
         android:label="AddCryptoWalletFragment" />
+    <fragment
+        android:id="@+id/projectFragment"
+        android:name="com.ar11.mobilecryptowallet.activity.ProjectFragment"
+        android:label="fragment_project"
+        tools:layout="@layout/fragment_project" />
+    <fragment
+        android:id="@+id/login2Fragment"
+        android:name="com.ar11.mobilecryptowallet.activity.Login2Fragment"
+        android:label="fragment_login2"
+        tools:layout="@layout/fragment_login2" />
+    <fragment
+        android:id="@+id/userInfoFragment"
+        android:name="com.ar11.mobilecryptowallet.activity.UserInfoFragment"
+        android:label="fragment_user_info"
+        tools:layout="@layout/fragment_user_info" />
+    <fragment
+        android:id="@+id/cryptoDetailFragment"
+        android:name="com.ar11.mobilecryptowallet.activity.CryptoDetailFragment"
+        android:label="fragment_crypto_detail"
+        tools:layout="@layout/fragment_crypto_detail" />
 </navigation>
