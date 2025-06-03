@@ -66,6 +66,9 @@ class CryptoRepositoryImpl @Inject constructor(
         }
     }
 
+
+
+
     override suspend fun userLogin2(user: UserModel2): TokenModel2 {
         try {
             val response = apiService.userLogin2(user)
@@ -133,7 +136,6 @@ class CryptoRepositoryImpl @Inject constructor(
             }
 
             val body = response.body() ?: throw ApiError(response.code(), response.message())
-
             cryptosDao.insert(body.toEntity())
         } catch (e: IOException) {
             throw NetworkError
@@ -288,6 +290,24 @@ class CryptoRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun deleteCrypto(cryptoName: String): Cryptos {
+        try {
+            val response = apiService.deleteCrypto(cryptoName)
+            if (!response.isSuccessful) {
+                throw ApiError(response.code(), response.message())
+            }
+
+            val body = response.body() ?: throw ApiError(response.code(), response.message())
+            cryptosDao.delete(cryptoName)
+            return body
+        } catch (e: IOException) {
+            throw NetworkError
+        } catch (e: Exception) {
+            throw UnknownError
+        }
+    }
+
+
     override suspend fun saveCryptoInfo(crypto: Cryptos): Cryptos {
         try {
             val response = apiService.saveCryptoInfo(crypto)
@@ -297,6 +317,40 @@ class CryptoRepositoryImpl @Inject constructor(
             val body = response.body() ?: throw ApiError(response.code(), response.message())
             // Записываем принятые данные в локальную базу
             cryptosDao.insert(CryptoEntity.fromDto(body))
+            return body
+        } catch (e: IOException) {
+            throw NetworkError
+        } catch (e: Exception) {
+            throw UnknownError
+        }
+    }
+
+    override suspend fun updateCryptoInfo(crypto: Cryptos): Cryptos {
+        try {
+            val response = apiService.updateCryptoInfo(crypto)
+            if (!response.isSuccessful) {
+                throw ApiError(response.code(), response.message())
+            }
+            val body = response.body() ?: throw ApiError(response.code(), response.message())
+            // Записываем принятые данные в локальную базу
+            cryptosDao.insert(CryptoEntity.fromDto(body))
+            return body
+        } catch (e: IOException) {
+            throw NetworkError
+        } catch (e: Exception) {
+            throw UnknownError
+        }
+    }
+
+    override suspend fun updateAboutInfo(project: Project): Project {
+        try {
+            val response = apiService.updateAboutInfo(project)
+            if (!response.isSuccessful) {
+                throw ApiError(response.code(), response.message())
+            }
+
+            val body = response.body() ?: throw ApiError(response.code(), response.message())
+            projectDao.insert(ProjectEntity.fromDto(body))
             return body
         } catch (e: IOException) {
             throw NetworkError

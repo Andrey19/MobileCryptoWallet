@@ -33,7 +33,13 @@ interface CryptoRepository {
 
     suspend fun getAll()
 
+    suspend fun deleteCrypto(cryptoName: String): Cryptos
+
+    suspend fun updateCryptoInfo(crypto: Cryptos): Cryptos
+
     suspend fun updatePrice()
+
+    suspend fun updateAboutInfo(project: Project): Project
 
     suspend fun userLogin2(user: UserModel2): TokenModel2
 

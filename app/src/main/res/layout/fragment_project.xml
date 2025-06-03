@@ -9,17 +9,20 @@
         android:id="@+id/projectName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Project name"
         android:textSize="16sp"
+        android:textColor="@color/black"
         android:layout_gravity="top|start" />
 
-    <TextView
+    <EditText
         android:id="@+id/projectDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
         android:text="Project Description"
-        android:textSize="16sp"
-        android:layout_gravity="bottom|end" />
+        android:textSize="16sp" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -27,6 +30,14 @@
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_launcher_wallet"
         android:layout_gravity="center" />
+
+    <Button
+        android:id="@+id/updateAboutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:layout_gravity="bottom|center"
+        />
 
 
 </FrameLayout>

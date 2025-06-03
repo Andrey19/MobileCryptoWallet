@@ -29,7 +29,7 @@ class Login2ViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val response = repository.userLogin2(UserModel2(email = login, password = password))
-                auth2.setAuth2(response.email, response.name,response.avatarUrl, response.token)
+                auth2.setAuth2(response.email, response.name,response.avatarUrl, response.token, response.admin)
                 _userLogin2.value = true
             } catch (e: Exception) {
                 _userLogin2.value = false

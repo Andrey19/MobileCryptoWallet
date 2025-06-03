@@ -33,7 +33,7 @@ class RegisterViewModel @Inject constructor(
                     UserModel2(email = login, password = password,
                 name = name)
                 )
-                auth2.setAuth2(response.email, response.name,response.avatarUrl, response.token)
+                auth2.setAuth2(response.email, response.name,response.avatarUrl, response.token, response.admin)
                 _userRegister.value = true
             } catch (e: Exception) {
                 _userRegister.value = false

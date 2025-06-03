@@ -71,6 +71,8 @@ class UserInfoViewModel @Inject constructor(
         }
     }
 
+
+
     fun createMultipartBody(uri: File, multipartName: String): MultipartBody.Part {
         val requestFile = uri.asRequestBody("multipart/form-data".toMediaTypeOrNull())
         return MultipartBody.Part.createFormData(name = multipartName, uri.name, requestFile)

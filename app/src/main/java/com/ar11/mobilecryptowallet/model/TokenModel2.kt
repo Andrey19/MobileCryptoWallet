@@ -6,7 +6,7 @@ data class TokenModel2(
     val avatar: String = "",
     val avatarUrl: String = "",
     val password: String = "",
-    val isAdmin: Boolean = false,
+    val admin: Boolean = false,
     val role: String = "",
     val token: String = ""
 )

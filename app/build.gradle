@@ -31,10 +31,12 @@ android {
             manifestPlaceholders.usesCleartextTraffic = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", '"https://crypto-wallet-backend-ubzr.onrender.com"'
+//            buildConfigField "String", "BASE_URL", '"http://192.168.0.102:8080"'
         }
         debug {
             manifestPlaceholders.usesCleartextTraffic = true
             buildConfigField "String", "BASE_URL", '"https://crypto-wallet-backend-ubzr.onrender.com"'
+//            buildConfigField "String", "BASE_URL", '"http://192.168.0.102:8080"'
         }
     }
     compileOptions {

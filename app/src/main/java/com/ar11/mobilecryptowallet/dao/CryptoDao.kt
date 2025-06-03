@@ -20,5 +20,9 @@ interface CryptoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(cryptos: List<CryptoEntity>)
 
+    @Query("DELETE FROM CryptoEntity WHERE cryptoName = :cryptoName")
+    suspend fun delete(cryptoName: String)
+
+
 }
 

@@ -1,5 +1,6 @@
 package com.ar11.mobilecryptowallet.api
 
+
 import com.ar11.mobilecryptowallet.BuildConfig
 import com.ar11.mobilecryptowallet.dto.CryptoInWalletRequest
 import com.ar11.mobilecryptowallet.dto.Cryptos
@@ -22,11 +23,14 @@ import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Query
+import java.util.concurrent.TimeUnit
 
 
 private const val BASE_URL = "${BuildConfig.BASE_URL}/api/"
 
 fun okhttp(vararg interceptors: Interceptor): OkHttpClient = OkHttpClient.Builder()
+    .readTimeout(20, TimeUnit.SECONDS)
+    .connectTimeout(20,TimeUnit.SECONDS)
     .apply {
         interceptors.forEach {
             this.addInterceptor(it)
@@ -39,6 +43,7 @@ fun retrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .client(client)
     .build()
+
 
 
 interface ApiService {
@@ -69,6 +74,12 @@ interface ApiService {
     @POST("wallet")
     suspend fun saveWallet(@Body wallet: WalletsModel): Response<WalletsModel>
 
+    @PUT("crypto/mobile")
+    suspend fun updateCryptoInfo(@Body crypto: Cryptos): Response<Cryptos>
+
+    @PUT("project/mobile")
+    suspend fun updateAboutInfo(@Body project: Project) : Response<Project>
+
     @PUT("wallet")
     suspend fun updateWallet(@Body wallet: WalletsModel): Response<WalletsModel>
 
@@ -83,6 +94,9 @@ interface ApiService {
 
     @PUT("user/mobile")
     suspend fun updateUserInfo(@Body user: UserModel2): Response<UserModel2>
+
+    @DELETE("crypto/mobile")
+    suspend fun deleteCrypto(@Query("cryptoName") cryptoName: String): Response<Cryptos>
 
     @Multipart
     @POST("image")
