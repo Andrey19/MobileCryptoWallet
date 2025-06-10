@@ -44,5 +44,11 @@
     <string name="crypto_cost">Cryptos Cost</string>
     <string name="updatePrice">Update Price</string>
 
+    <string name="bottom_navigation_cart">Заказ</string>
+    <string name="bottom_navigation_info">Инфо</string>
+    <string name="bottom_navigation_menu">Меню</string>
+    <string name="bottom_navigation_offers">Акции</string>
+    <string name="bottom_navigation_profile">Кабинет</string>
+
 
 </resources>

@@ -14,4 +14,22 @@
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorRed">#C11515</color>
+    <color name="color_primary_black">#000000</color>
+    <color name="color_primary_white">#ffffff</color>
+    <color name="color_primary_orange">#ffa300</color>
+    <color name="color_primary_gold">#FFCC01</color>
+    <color name="color_primary_greyish">#a5a5a5</color>
+    <color name="color_primary_dark_grey">#616161</color>
+    <color name="dark_grey">#333333</color>
+    <color name="light_grey">#A0A3BD</color>
+    <color name="light">#FCFCFC</color>
+    <color name="grey_background">#E9E9E9</color>
+    <color name="grey">#F4F4F6</color>
+    <color name="grey_1">#BDBDBD</color>
+    <color name="gr2">#7A7A7A</color>
+    <color name="gr3">#CDCDCD</color>
+    <color name="grey_3">#828282</color>
+    <color name="grey_6">#F2F2F2</color>
+    <color name="grey_5">#E0E0E0</color>
+    <color name="green">#4CAF50</color>
 </resources>

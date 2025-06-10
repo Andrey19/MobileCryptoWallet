@@ -98,7 +98,6 @@ class FeedFragment: Fragment() {
         }
 
 
-
         binding.swiperefresh.setOnRefreshListener {
             viewModel.refreshCryptos()
         }

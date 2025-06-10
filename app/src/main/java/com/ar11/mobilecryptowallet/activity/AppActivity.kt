@@ -1,5 +1,6 @@
 package com.ar11.mobilecryptowallet.activity
 
+
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.Menu
@@ -13,6 +14,7 @@ import com.ar11.mobilecryptowallet.R
 import com.ar11.mobilecryptowallet.auth.AppAuth2
 import com.ar11.mobilecryptowallet.viewmodel.Auth2ViewModel
 import com.ar11.mobilecryptowallet.viewmodel.CryptoViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
@@ -29,8 +31,19 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
 
     private val viewModelCrypto: CryptoViewModel by viewModels()
 
+//    private var bottomNavigationView: BottomNavigationView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+//        bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+//        bottomNavigationView?.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
+//            when (item.itemId) {
+//                R.id.action_info ->                         // Действия для пункта "Home"
+//                    return@OnNavigationItemSelectedListener true
+//            }
+//            false
+//        })
 
 
         viewModelAuth2.data2.observe(this) {
@@ -77,7 +90,6 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                             )
                         true
                     }
-
                     R.id.about -> {
                         findNavController(R.id.nav_host_fragment)
                             .navigate(
