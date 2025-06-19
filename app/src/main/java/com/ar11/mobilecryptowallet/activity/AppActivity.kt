@@ -31,19 +31,10 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
 
     private val viewModelCrypto: CryptoViewModel by viewModels()
 
-//    private var bottomNavigationView: BottomNavigationView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-//        bottomNavigationView?.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
-//            when (item.itemId) {
-//                R.id.action_info ->                         // Действия для пункта "Home"
-//                    return@OnNavigationItemSelectedListener true
-//            }
-//            false
-//        })
 
 
         viewModelAuth2.data2.observe(this) {
@@ -52,6 +43,38 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
 
 
         val context = this
+
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNav.setOnItemSelectedListener {
+            when(it.itemId) {
+                R.id.action_info -> {
+                    title = "MobileCryptoWallet (Project Info)"
+                    findNavController(R.id.nav_host_fragment)
+                        .navigate(
+                            R.id.projectFragment
+                        )
+                    true
+                }
+                R.id.action_menu -> {
+                    title = "MobileCryptoWallet (Wallet)"
+                    findNavController(R.id.nav_host_fragment)
+                        .navigate(
+                            R.id.walletsFragment
+                        )
+                    true
+                }
+                R.id.action_profile -> {
+                    title = "MobileCryptoWallet (Crypto Info)"
+                    findNavController(R.id.nav_host_fragment)
+                        .navigate(
+                            R.id.feedFragment
+                        )
+                    true
+                }
+                else -> false
+            }
+        }
+
         addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater:
             MenuInflater

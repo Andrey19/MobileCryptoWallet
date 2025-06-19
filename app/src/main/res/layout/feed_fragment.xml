@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"
-        android:contentDescription="Add Crypto"
+        android:contentDescription="@string/add_crypto"
         android:focusable="true"
         android:layout_marginBottom="50dp"
         android:layout_gravity="bottom|end"
@@ -74,7 +74,7 @@
         android:layout_margin="@dimen/fab_margin"
         android:layout_marginStart="16dp"
         android:clickable="true"
-        android:contentDescription="Update price"
+        android:contentDescription="@string/update_price"
         android:focusable="true"
         android:layout_gravity="bottom|start"
         app:srcCompat="@drawable/ic_person" />
