@@ -46,28 +46,54 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNav.setOnItemSelectedListener {
-            when(it.itemId) {
-                R.id.action_info -> {
+            when (it.itemId) {
+                R.id.action_market -> {
                     title = "MobileCryptoWallet (Project Info)"
                     findNavController(R.id.nav_host_fragment)
                         .navigate(
-                            R.id.projectFragment
+                            R.id.feedFragment
                         )
                     true
                 }
-                R.id.action_menu -> {
-                    title = "MobileCryptoWallet (Wallet)"
-                    findNavController(R.id.nav_host_fragment)
-                        .navigate(
-                            R.id.walletsFragment
-                        )
-                    true
+
+                R.id.action_wallet -> {
+                    if (auth2.authStateFlow2.value.email != null) {
+
+                        findNavController(R.id.nav_host_fragment)
+                            .navigate(
+                                R.id.walletsFragment
+                            )
+                        true
+                    } else {
+                        bottomNav.selectedItemId = R.id.action_profile
+                        findNavController(R.id.nav_host_fragment)
+                            .navigate(
+                                R.id.login2Fragment
+                            )
+                        false
+                    }
                 }
+
                 R.id.action_profile -> {
+                    if (auth2.authStateFlow2.value.email != null) {
+                        findNavController(R.id.nav_host_fragment)
+                            .navigate(
+                                R.id.userInfoFragment
+                            )
+                    } else {
+                        findNavController(R.id.nav_host_fragment)
+                            .navigate(
+                                R.id.login2Fragment
+                            )
+                    }
+                    true
+                }
+
+                R.id.action_about -> {
                     title = "MobileCryptoWallet (Crypto Info)"
                     findNavController(R.id.nav_host_fragment)
                         .navigate(
-                            R.id.feedFragment
+                            R.id.projectFragment
                         )
                     true
                 }
@@ -76,8 +102,9 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
         }
 
         addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater:
-            MenuInflater
+            override fun onCreateMenu(
+                menu: Menu, menuInflater:
+                MenuInflater
             ) {
                 menuInflater.inflate(R.menu.menu_main, menu)
 
@@ -99,6 +126,7 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                             )
                         true
                     }
+
                     R.id.home -> {
                         findNavController(R.id.nav_host_fragment)
                             .navigate(
@@ -106,6 +134,7 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                             )
                         true
                     }
+
                     R.id.user_info -> {
                         findNavController(R.id.nav_host_fragment)
                             .navigate(
@@ -113,6 +142,7 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                             )
                         true
                     }
+
                     R.id.about -> {
                         findNavController(R.id.nav_host_fragment)
                             .navigate(
@@ -120,6 +150,7 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                             )
                         true
                     }
+
                     R.id.login2 -> {
                         findNavController(R.id.nav_host_fragment)
                             .navigate(
@@ -127,6 +158,7 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                             )
                         true
                     }
+
                     R.id.wallets -> {
                         findNavController(R.id.nav_host_fragment)
                             .navigate(
@@ -134,18 +166,19 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                             )
                         true
                     }
+
                     R.id.updatePrice -> {
                         viewModelCrypto.updatePrice()
                         true
                     }
+
                     R.id.signout -> {
 
                         val builder = AlertDialog.Builder(context)
                         builder.setMessage("Do you want to logout ?")
                         builder.setTitle("Logout")
                         builder.setCancelable(false)
-                        builder.setPositiveButton("Yes") {
-                                _, _ ->
+                        builder.setPositiveButton("Yes") { _, _ ->
                             run {
                                 auth2.removeAuth2()
                                 findNavController(R.id.nav_host_fragment)
@@ -154,14 +187,15 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                                     )
                             }
                         }
-                        builder.setNegativeButton("No") {
-                                dialog, _ -> dialog.cancel()
+                        builder.setNegativeButton("No") { dialog, _ ->
+                            dialog.cancel()
                         }
                         val alertDialog = builder.create()
                         alertDialog.show()
 
                         true
                     }
+
                     else -> false
                 }
 

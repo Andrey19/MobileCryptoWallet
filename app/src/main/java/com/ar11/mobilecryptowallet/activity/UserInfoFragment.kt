@@ -1,5 +1,6 @@
 package com.ar11.mobilecryptowallet.activity
 
+import android.app.AlertDialog
 import android.net.Uri
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -9,7 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.ar11.mobilecryptowallet.R
+import com.ar11.mobilecryptowallet.auth.AppAuth2
 import com.ar11.mobilecryptowallet.databinding.FragmentUserInfoBinding
 import com.ar11.mobilecryptowallet.viewmodel.UserInfoViewModel
 import com.bumptech.glide.Glide
@@ -17,11 +22,15 @@ import com.bumptech.glide.request.RequestOptions
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import java.io.File
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi
 class UserInfoFragment : Fragment() {
+
+    @Inject
+    lateinit var auth2: AppAuth2
 
     private var imageFile: File? = null
     private val viewModel: UserInfoViewModel by activityViewModels()
@@ -82,6 +91,25 @@ class UserInfoFragment : Fragment() {
 
         binding.updateButton.setOnClickListener {
             viewModel.updateUserInfo(binding.userName.text.toString(), imageFile)
+        }
+
+        binding.logOutButton.setOnClickListener{
+            val builder = AlertDialog.Builder(context)
+            builder.setMessage("Do you want to logout ?")
+            builder.setTitle("Logout")
+            builder.setCancelable(false)
+            builder.setPositiveButton("Yes") { _, _ ->
+                run {
+                    auth2.removeAuth2()
+                    findNavController().navigate(R.id.login2Fragment)
+                }
+            }
+            builder.setNegativeButton("No") { dialog, _ ->
+                dialog.cancel()
+            }
+            val alertDialog = builder.create()
+            alertDialog.show()
+
         }
 
 

@@ -44,11 +44,12 @@
     <string name="crypto_amount">Crypto Amount</string>
     <string name="crypto_cost">Cryptos Cost</string>
     <string name="updatePrice">Update Price</string>
+    <string name="move_to_register">Move to Register</string>
 
-    <string name="bottom_navigation_cart">Заказ</string>
-    <string name="bottom_navigation_info">Инфо</string>
-    <string name="bottom_navigation_menu">Меню</string>
-    <string name="bottom_navigation_offers">Акции</string>
+    <string name="bottom_navigation_about">Заказ</string>
+    <string name="bottom_navigation_market">Инфо</string>
+    <string name="bottom_navigation_search">Меню</string>
+    <string name="bottom_navigation_wallet">Акции</string>
     <string name="bottom_navigation_profile">Кабинет</string>
     <string name="update_price">Update price</string>
     <string name="add_crypto">Add Crypto</string>

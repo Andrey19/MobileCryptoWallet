@@ -43,6 +43,10 @@ class Login2Fragment : Fragment() {
             }
         }
 
+        binding.btnMoveToRegister.setOnClickListener{
+            findNavController().navigate(R.id.registerFragment)
+        }
+
         return binding.root
     }
 

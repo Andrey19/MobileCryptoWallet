@@ -45,5 +45,14 @@
         android:layout_gravity="bottom|center"
         />
 
+    <Button
+        android:id="@+id/logOutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:layout_marginBottom="30dp"
+        android:layout_gravity="bottom|center"
+        />
+
 
 </FrameLayout>
