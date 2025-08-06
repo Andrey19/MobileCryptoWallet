@@ -56,6 +56,9 @@ interface ApiService {
     @GET("user")
     suspend fun getUser(@Query("email") email: String): Response<UserModel2>
 
+    @GET("users")
+    suspend fun getUsersList(): Response<List<UserModel2>>
+
     @POST("crypto/mobile")
     suspend fun saveCryptoInfo(@Body crypto: Cryptos): Response<Cryptos>
 
@@ -73,6 +76,9 @@ interface ApiService {
 
     @POST("wallet")
     suspend fun saveWallet(@Body wallet: WalletsModel): Response<WalletsModel>
+
+    @PUT("user/mobile")
+    suspend fun updateUserInfo2(@Body user: UserModel2): Response<UserModel2>
 
     @PUT("crypto/mobile")
     suspend fun updateCryptoInfo(@Body crypto: Cryptos): Response<Cryptos>

@@ -10,6 +10,8 @@ import com.ar11.mobilecryptowallet.model.TokenModel2
 import com.ar11.mobilecryptowallet.model.UserModel2
 import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
+import retrofit2.Response
+import retrofit2.http.GET
 
 interface CryptoRepository {
 
@@ -33,9 +35,13 @@ interface CryptoRepository {
 
     suspend fun getAll()
 
+    suspend fun getUsersList(): List<UserModel2>
+
     suspend fun deleteCrypto(cryptoName: String): Cryptos
 
     suspend fun updateCryptoInfo(crypto: Cryptos): Cryptos
+
+    suspend fun updateUserInfo2(user: UserModel2) : UserModel2
 
     suspend fun updatePrice()
 

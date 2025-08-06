@@ -61,4 +61,13 @@
         android:name="com.ar11.mobilecryptowallet.activity.CryptoDetailFragment"
         android:label="fragment_crypto_detail"
         tools:layout="@layout/fragment_crypto_detail" />
+    <fragment
+        android:id="@+id/listUserInfoFragment"
+        android:name="com.ar11.mobilecryptowallet.activity.ListUserInfoFragment"
+        android:label="fragment_user_info_list"
+        tools:layout="@layout/fragment_user_info_list" />
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="com.ar11.mobilecryptowallet.activity.UserDetailFragment"
+        android:label="UserDetailFragment" />
 </navigation>

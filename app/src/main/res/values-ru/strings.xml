@@ -53,4 +53,7 @@
     <string name="bottom_navigation_profile">Кабинет</string>
     <string name="update_price">Update price</string>
     <string name="add_crypto">Add Crypto</string>
+    <string name="user_list">User list</string>
+    <string name="user_description">User Description</string>
+    <string name="user_name">User Name</string>
 </resources>

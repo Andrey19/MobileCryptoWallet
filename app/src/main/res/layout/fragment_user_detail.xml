@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.UserDetailFragment">
+
+    <TextView
+        android:id="@+id/userEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_name"
+        android:textSize="16sp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:autofillHints="Crypto Name"
+        />
+
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_description"
+        android:textSize="16sp"
+        android:layout_gravity="top|start"
+        android:layout_marginTop="40sp"
+        android:layout_marginStart="5dp"
+        android:autofillHints="User Name"
+        android:inputType="text"
+        />
+
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/ic_launcher_wallet"
+        android:layout_gravity="center" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="back"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        />
+
+    <Button
+        android:id="@+id/updateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update name"
+        android:layout_gravity="bottom|center"
+        />
+
+
+
+</FrameLayout>

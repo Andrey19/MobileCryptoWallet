@@ -74,6 +74,15 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                     }
                 }
 
+                R.id.action_search -> {
+                    title = "MobileCryptoWallet (Project Info)"
+                    findNavController(R.id.nav_host_fragment)
+                        .navigate(
+                            R.id.listUserInfoFragment
+                        )
+                    true
+                }
+
                 R.id.action_profile -> {
                     if (auth2.authStateFlow2.value.email != null) {
                         findNavController(R.id.nav_host_fragment)

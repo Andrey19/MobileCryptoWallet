@@ -107,7 +107,11 @@ class FeedFragment: Fragment() {
         }
 
         viewModel.dataState.observe(viewLifecycleOwner){
-            binding.progress.isVisible = it.loading || it.refreshing
+            if (it.loading){
+                binding.swiperefresh.isRefreshing = true
+            } else if(!it.refreshing){
+                binding.swiperefresh.isRefreshing = false
+            }
         }
 
         return binding.root

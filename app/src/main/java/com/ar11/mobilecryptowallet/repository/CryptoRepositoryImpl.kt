@@ -28,6 +28,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import okhttp3.MultipartBody
+import retrofit2.Response
 import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -127,6 +128,26 @@ class CryptoRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getUsersList(): List<UserModel2> {
+        try {
+            val response = apiService.getUsersList()
+            if (!response.isSuccessful) {
+                println("-------------mistake------------------------")
+                println(response.message())
+                throw ApiError(response.code(), response.message())
+            }
+            println("-------------okey------------------------")
+            val body = response.body() ?: throw ApiError(response.code(), response.message())
+            println(body)
+            return body
+
+        } catch (e: IOException) {
+            throw NetworkError
+        } catch (e: Exception) {
+
+            throw UnknownError
+        }
+    }
 
     override suspend fun getAll() {
         try {
@@ -334,6 +355,21 @@ class CryptoRepositoryImpl @Inject constructor(
             val body = response.body() ?: throw ApiError(response.code(), response.message())
             // Записываем принятые данные в локальную базу
             cryptosDao.insert(CryptoEntity.fromDto(body))
+            return body
+        } catch (e: IOException) {
+            throw NetworkError
+        } catch (e: Exception) {
+            throw UnknownError
+        }
+    }
+
+    override suspend fun updateUserInfo2(user: UserModel2): UserModel2 {
+        try {
+            val response = apiService.updateUserInfo2(user)
+            if (!response.isSuccessful) {
+                throw ApiError(response.code(), response.message())
+            }
+            val body = response.body() ?: throw ApiError(response.code(), response.message())
             return body
         } catch (e: IOException) {
             throw NetworkError
