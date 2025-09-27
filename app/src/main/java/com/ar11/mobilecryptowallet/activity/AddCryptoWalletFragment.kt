@@ -62,14 +62,20 @@ class AddCryptoWalletFragment : Fragment(), AdapterView.OnItemSelectedListener {
             cryptoIndex = 0
         }
 
-        var spinnerAdapter = ArrayAdapter(this.requireContext(), android.R.layout.simple_spinner_item, list)
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//        var spinnerAdapter = ArrayAdapter(this.requireContext(), android.R.layout.simple_spinner_item, list)
+//        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//
+//        with(binding.inputCryptoType)
+//        {
+//            adapter = spinnerAdapter
+//            setSelection(cryptoIndex, false)
+//            onItemSelectedListener = this@AddCryptoWalletFragment
+//        }
 
-        with(binding.inputCryptoType)
-        {
-            adapter = spinnerAdapter
-            setSelection(cryptoIndex, false)
-            onItemSelectedListener = this@AddCryptoWalletFragment
+
+
+        ArrayAdapter<String>(this.requireContext(), android.R.layout.simple_list_item_1, list).also { adapter ->
+            binding.inputCryptoType.setAdapter(adapter)
         }
 
         with(binding) {
