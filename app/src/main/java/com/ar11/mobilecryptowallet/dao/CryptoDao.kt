@@ -23,6 +23,9 @@ interface CryptoDao {
     @Query("DELETE FROM CryptoEntity WHERE cryptoName = :cryptoName")
     suspend fun delete(cryptoName: String)
 
+    @Query("DELETE FROM CryptoEntity ")
+    suspend fun deleteAll()
+
 
 }
 

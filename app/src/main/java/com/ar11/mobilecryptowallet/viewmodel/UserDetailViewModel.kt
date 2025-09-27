@@ -47,14 +47,14 @@ class UserDetailViewModel @Inject constructor(
             if (auth2.authStateFlow2.value.email != null) {
                 var sendUser = user
                 if (imageFile != null) {
-//                    val imageModel = repository.uploadImage(createMultipartBody(imageFile, "file"))
+                    val imageModel = repository.uploadImage(createMultipartBody(imageFile, "file"))
                     sendUser = UserModel2(
                         email = user.email,
                         name = user.name,
-//                        avatar = user.avatar,
-//                        avatarUrl = user.avatarUrl,
+                        avatar = imageModel.image,
+                        avatarUrl = imageModel.imageUrl,
 
-                    )
+                        )
                 }
 
                 val userInfo = repository.updateUserInfo2(sendUser)
@@ -83,7 +83,7 @@ class UserDetailViewModel @Inject constructor(
                 }
 
                 val cryptoInfo = repository.saveCryptoInfo(sendCrypto)
-              //  _cryptoData.value = cryptoInfo
+                //  _cryptoData.value = cryptoInfo
                 println("------------------------- Криптовалюта сохранена успешно")
 
             }

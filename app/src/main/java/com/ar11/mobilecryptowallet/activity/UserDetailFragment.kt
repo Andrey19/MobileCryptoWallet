@@ -77,13 +77,6 @@ class UserDetailFragment : Fragment() {
 
         imageFile = null
 
-        binding.updateButton.setOnClickListener {
-            val sendUser = UserModel2(
-                email = user.email,
-                name = binding.userName.text.toString(),
-            )
-            viewModel.updateUserName(sendUser, imageFile)
-        }
 
         if (user.avatarUrl.isNotEmpty()) {
             val options = RequestOptions()
@@ -120,6 +113,14 @@ class UserDetailFragment : Fragment() {
                     imageFile = file
                 }
             }
+
+        binding.updateButton.setOnClickListener {
+            val sendUser = UserModel2(
+                email = user.email,
+                name = binding.userName.text.toString(),
+            )
+            viewModel.updateUserName(sendUser, imageFile)
+        }
 
         binding.image.setOnClickListener {
             getImageFromGallery.launch("image/*")

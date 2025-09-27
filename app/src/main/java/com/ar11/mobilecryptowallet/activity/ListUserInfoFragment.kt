@@ -69,7 +69,7 @@ class ListUserInfoFragment : Fragment() {
 
         binding.list.adapter = adapter
 
-        adapter.submitList(viewModel.usersListData.value)
+        viewModel.refreshUsers()
 
         viewModel.usersListData.observe(viewLifecycleOwner) {
             adapter.submitList(it)

@@ -157,6 +157,7 @@ class CryptoRepositoryImpl @Inject constructor(
             }
 
             val body = response.body() ?: throw ApiError(response.code(), response.message())
+            cryptosDao.deleteAll()
             cryptosDao.insert(body.toEntity())
         } catch (e: IOException) {
             throw NetworkError
