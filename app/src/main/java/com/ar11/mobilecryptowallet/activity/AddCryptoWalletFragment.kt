@@ -1,9 +1,11 @@
 package com.ar11.mobilecryptowallet.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -13,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.ar11.mobilecryptowallet.R
+import com.ar11.mobilecryptowallet.adapter.CryptoListAdapter
 import com.ar11.mobilecryptowallet.databinding.FragmentWalletCryptoAddBinding
 import com.ar11.mobilecryptowallet.dto.CryptoInWalletRequest
 import com.ar11.mobilecryptowallet.dto.Cryptos
@@ -42,6 +45,7 @@ class AddCryptoWalletFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private var fragmentBinding: FragmentWalletCryptoAddBinding? = null
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -71,12 +75,32 @@ class AddCryptoWalletFragment : Fragment(), AdapterView.OnItemSelectedListener {
 //            setSelection(cryptoIndex, false)
 //            onItemSelectedListener = this@AddCryptoWalletFragment
 //        }
+//        val adapter =
+//            CryptoListAdapter(this.requireContext(), android.R.layout.simple_list_item_1, list)
+
+//        val listener = View.OnTouchListener{v, event ->
+//            if (event.action == MotionEvent.ACTION_DOWN) {
+//                binding.inputCryptoType.showDropDown()
+//            }
+//
+//            false
+//        }
+
+        binding.inputCryptoType.setOnTouchListener({v, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                binding.inputCryptoType.showDropDown()
+            }
+
+            false
+        })
+
+        binding.inputCryptoType.setAdapter(CryptoListAdapter(this.requireContext(), android.R.layout.simple_list_item_1, list))
 
 
-
-        ArrayAdapter<String>(this.requireContext(), android.R.layout.simple_list_item_1, list).also { adapter ->
-            binding.inputCryptoType.setAdapter(adapter)
-        }
+//
+//        ArrayAdapter<String>(this.requireContext(), android.R.layout.simple_list_item_1, list).also { adapter ->
+//            binding.inputCryptoType.setAdapter(adapter)
+//        }
 
         with(binding) {
             inputCryptoName.setText(crypto.cryptoName)
