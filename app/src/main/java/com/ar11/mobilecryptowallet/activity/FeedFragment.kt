@@ -1,5 +1,7 @@
 package com.ar11.mobilecryptowallet.activity
 
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +26,7 @@ import com.ar11.mobilecryptowallet.viewmodel.Auth2ViewModel
 import com.ar11.mobilecryptowallet.viewmodel.CryptoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+
 
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi

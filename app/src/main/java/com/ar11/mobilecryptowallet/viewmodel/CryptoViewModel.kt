@@ -1,5 +1,6 @@
 package com.ar11.mobilecryptowallet.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,11 +17,16 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 @ExperimentalCoroutinesApi
 @HiltViewModel
 class CryptoViewModel @Inject constructor(
     private val repository: CryptoRepository,
 ) : ViewModel() {
+
+    private val _isDarkTheme = MutableLiveData<Boolean>()
+    val isDarkTheme: LiveData<Boolean>
+        get() = _isDarkTheme
 
     val data: LiveData<List<Cryptos>> = repository.data.asLiveData(Dispatchers.Default)
 
@@ -32,6 +38,12 @@ class CryptoViewModel @Inject constructor(
         loadCryptos()
     }
 
+    fun setTheme(isDarkTheme: Boolean) {
+        _isDarkTheme.value = isDarkTheme
+    }
+    fun getTheme() : Boolean {
+        return  isDarkTheme.value!!
+    }
     fun loadCryptos() = viewModelScope.launch {
         try {
             _dataState.value = CryptosModelState(loading = true)

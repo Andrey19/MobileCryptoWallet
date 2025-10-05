@@ -1,6 +1,7 @@
 package com.ar11.mobilecryptowallet.activity
 
 import android.app.AlertDialog
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -8,7 +9,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Switch
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
@@ -16,6 +20,7 @@ import androidx.navigation.fragment.findNavController
 import com.ar11.mobilecryptowallet.R
 import com.ar11.mobilecryptowallet.auth.AppAuth2
 import com.ar11.mobilecryptowallet.databinding.FragmentUserInfoBinding
+import com.ar11.mobilecryptowallet.viewmodel.CryptoViewModel
 import com.ar11.mobilecryptowallet.viewmodel.UserInfoViewModel
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -34,6 +39,8 @@ class UserInfoFragment : Fragment() {
 
     private var imageFile: File? = null
     private val viewModel: UserInfoViewModel by activityViewModels()
+
+    private val viewModelCrypto: CryptoViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,6 +71,24 @@ class UserInfoFragment : Fragment() {
         } else {
             binding.avatar.setImageResource(R.mipmap.ic_launcher_wallet)
         }
+
+       val theme = viewModelCrypto.getTheme()
+        binding.usFr.isSelected = theme
+        if (theme){
+            binding.usFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+        } else {
+            binding.usFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
+        }
+
+
+        binding.mySwitch.setOnCheckedChangeListener {  buttonView, isChecked ->
+            viewModelCrypto.setTheme(isChecked)
+            if (isChecked) {
+                binding.usFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+            } else {
+                binding.usFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
+            } }
+
 
         val getImageFromGallery =
             registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->

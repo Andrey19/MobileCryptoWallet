@@ -2,6 +2,7 @@ package com.ar11.mobilecryptowallet.activity
 
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -9,6 +10,7 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
+import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import com.ar11.mobilecryptowallet.R
 import com.ar11.mobilecryptowallet.auth.AppAuth2
@@ -18,6 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
+import androidx.core.content.edit
 
 
 @AndroidEntryPoint
@@ -43,6 +46,15 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
 
 
         val context = this
+
+        val sharedPreferences = context.getSharedPreferences("cryptoPref", Context.MODE_PRIVATE)
+        val isDarkTheme = sharedPreferences.getBoolean("isDarkTheme", false)
+        viewModelCrypto.setTheme(isDarkTheme)
+
+        viewModelCrypto.isDarkTheme.observe(this) { isDarkTheme ->
+            val sharedPreferences = context.getSharedPreferences("cryptoPref", Context.MODE_PRIVATE)
+            sharedPreferences.edit(commit = true) { putBoolean("isDarkTheme", isDarkTheme) }
+        }
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNav.setOnItemSelectedListener {

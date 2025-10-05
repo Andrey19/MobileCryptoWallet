@@ -55,6 +55,7 @@
     <string name="user_list">User list</string>
     <string name="user_description">User Description</string>
     <string name="user_name">User Name</string>
+    <string name="dark_theme">Темная тема</string>
 
 
 </resources>

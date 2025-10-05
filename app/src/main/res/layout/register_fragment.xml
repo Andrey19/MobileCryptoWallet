@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.RegisterFragment"
-    android:background="@drawable/bb">
+    android:background="@drawable/black_theme">
 
     <TextView
         android:id="@+id/logo"
