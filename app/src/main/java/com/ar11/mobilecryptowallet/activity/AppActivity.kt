@@ -51,9 +51,8 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
         val isDarkTheme = sharedPreferences.getBoolean("isDarkTheme", false)
         viewModelCrypto.setTheme(isDarkTheme)
 
-        viewModelCrypto.isDarkTheme.observe(this) { isDarkTheme ->
-            val sharedPreferences = context.getSharedPreferences("cryptoPref", Context.MODE_PRIVATE)
-            sharedPreferences.edit(commit = true) { putBoolean("isDarkTheme", isDarkTheme) }
+        viewModelCrypto.isDarkTheme.observe(this) { isDark ->
+            sharedPreferences.edit(commit = true) { putBoolean("isDarkTheme", isDark) }
         }
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)

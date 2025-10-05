@@ -73,7 +73,7 @@ class UserInfoFragment : Fragment() {
         }
 
        val theme = viewModelCrypto.getTheme()
-        binding.usFr.isSelected = theme
+        binding.mySwitch.isChecked = theme
         if (theme){
             binding.usFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
         } else {
