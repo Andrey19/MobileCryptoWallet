@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -13,6 +14,7 @@ import com.ar11.mobilecryptowallet.databinding.FragmentWalletAddBinding
 import com.ar11.mobilecryptowallet.dto.WalletsModel
 import com.ar11.mobilecryptowallet.util.AndroidUtils
 import com.ar11.mobilecryptowallet.util.StringArg
+import com.ar11.mobilecryptowallet.viewmodel.CryptoViewModel
 import com.ar11.mobilecryptowallet.viewmodel.WalletsViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +31,8 @@ class AddWalletFragment : Fragment() {
 
 
     private val viewModel: WalletsViewModel by activityViewModels()
+
+    private val viewModelCrypto: CryptoViewModel by activityViewModels()
 
     private var fragmentBinding: FragmentWalletAddBinding? = null
 
@@ -48,6 +52,13 @@ class AddWalletFragment : Fragment() {
         binding.inputWalletDescription.setText(wallet?.walletDescription)
         binding.cryptosAmountValue.text = wallet?.cryptosCount.toString()
         binding.cryptosCostValue.text = wallet?.cryptosCost.toString()
+
+        val theme = viewModelCrypto.getTheme()
+        if (theme){
+            binding.adWalFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+        } else {
+            binding.adWalFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
+        }
 
 
 //        val adapter = CryptoInWalletAdapter(object : OnCryptoInteractionListener {

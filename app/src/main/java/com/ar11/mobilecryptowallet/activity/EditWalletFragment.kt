@@ -1,10 +1,12 @@
 package com.ar11.mobilecryptowallet.activity
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -23,6 +25,7 @@ import com.ar11.mobilecryptowallet.dto.CryptosModel
 import com.ar11.mobilecryptowallet.dto.WalletsModel
 import com.ar11.mobilecryptowallet.util.AndroidUtils
 import com.ar11.mobilecryptowallet.util.StringArg
+import com.ar11.mobilecryptowallet.viewmodel.CryptoViewModel
 import com.ar11.mobilecryptowallet.viewmodel.WalletsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -38,6 +41,8 @@ class EditWalletFragment : Fragment() {
     }
 
     private val viewModel: WalletsViewModel by activityViewModels()
+
+    private val viewModelCrypto: CryptoViewModel by activityViewModels()
 
     private var fragmentBinding: FragmentWalletEditBinding? = null
 
@@ -57,6 +62,13 @@ class EditWalletFragment : Fragment() {
         binding.inputWalletDescription.setText(wallet?.walletDescription)
         binding.cryptosAmountValue.text = wallet?.cryptosCount.toString()
         binding.cryptosCostValue.text = wallet?.cryptosCost.toString()
+
+        val theme = viewModelCrypto.getTheme()
+        if (theme){
+            binding.edWalFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+        } else {
+            binding.edWalFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
+        }
 
 
         val adapter = CryptoInWalletAdapter(object : OnCryptoInteractionListener {
@@ -116,6 +128,14 @@ class EditWalletFragment : Fragment() {
                         walletNameViewCrypto = wallet!!.walletName
                     }
                 )
+            }
+
+            override fun getTheme(): Drawable? {
+                if (viewModelCrypto.getTheme()){
+                    return ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+                } else{
+                    return ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
+                }
             }
 
             override fun isMenuActive(): Boolean {

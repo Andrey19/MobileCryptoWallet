@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -59,6 +60,13 @@ class EditCryptoWalletFragment : Fragment() {
         } else {
             selectedCrypto = viewModelCrypto.getCrypto(list[0])
             cryptoIndex = 0
+        }
+
+        val theme = viewModelCrypto.getTheme()
+        if (theme){
+            binding.crWalFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+        } else {
+            binding.crWalFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
         }
 
 

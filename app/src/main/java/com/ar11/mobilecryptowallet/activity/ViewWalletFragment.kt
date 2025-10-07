@@ -1,5 +1,6 @@
 package com.ar11.mobilecryptowallet.activity
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import com.ar11.mobilecryptowallet.util.CryptosBooleanArg
 import com.ar11.mobilecryptowallet.util.CryptosBooleanArg.getValue
 import com.ar11.mobilecryptowallet.util.CryptosBooleanArg.setValue
 import com.ar11.mobilecryptowallet.util.StringArg
+import com.ar11.mobilecryptowallet.viewmodel.CryptoViewModel
 import com.ar11.mobilecryptowallet.viewmodel.WalletsViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,6 +37,8 @@ class ViewWalletFragment : Fragment() {
     }
 
     private val viewModel: WalletsViewModel by activityViewModels()
+
+    private val viewModelCrypto: CryptoViewModel by activityViewModels()
 
     private var fragmentBinding: FragmentWalletViewBinding? = null
 
@@ -55,6 +59,14 @@ class ViewWalletFragment : Fragment() {
         binding.cryptosAmountValue.text =  wallet?.cryptosCount.toString()
         binding.cryptosCostValue.text = wallet?.cryptosCost.toString()
 
+        val theme = viewModelCrypto.getTheme()
+        if (theme){
+            binding.viWalFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+        } else {
+            binding.viWalFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
+        }
+
+
 
 
         val adapter = CryptoInWalletAdapter(object : OnCryptoInteractionListener {
@@ -70,6 +82,14 @@ class ViewWalletFragment : Fragment() {
 
             override fun isMenuActive(): Boolean {
                 return false
+            }
+
+            override fun getTheme(): Drawable? {
+                if (viewModelCrypto.getTheme()){
+                    return ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+                } else{
+                    return ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
+                }
             }
 
         })

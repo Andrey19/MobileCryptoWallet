@@ -1,6 +1,7 @@
 package com.ar11.mobilecryptowallet.adapter
 
 import android.app.AlertDialog
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,10 @@ interface OnCryptoInteractionListener {
     fun onEdit(crypto: CryptosModel) {}
     fun onRemove(crypto: CryptosModel) {}
     fun onView(crypto: CryptosModel) {}
+
+    fun getTheme(): Drawable? {
+        return null
+    }
 
     fun isMenuActive(): Boolean
 }
@@ -50,6 +55,8 @@ class CryptoInWalletViewHolder(
             cryptoDescription.text = crypto.cryptoDescription
             count.text = crypto.cryptoAmount.toString()
             cost.text = crypto.cryptoCost.toString()
+
+            binding.waInCrCa.background = onCryptoInteractionListener.getTheme()
 
 
             if (crypto.imageUrl.isNotEmpty()) {
