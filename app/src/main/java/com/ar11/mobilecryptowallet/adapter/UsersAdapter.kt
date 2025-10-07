@@ -1,5 +1,6 @@
 package com.ar11.mobilecryptowallet.adapter
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -15,6 +16,10 @@ import com.bumptech.glide.request.RequestOptions
 
 interface OnInteractionListenerUser {
     fun onView(user: UserModel2) {}
+
+    fun getTheme(): Drawable? {
+        return null
+    }
 }
 
 
@@ -43,6 +48,8 @@ class UserViewHolder(
 
             userMail.text = user.email
             userName.text = user.name
+
+            binding.usCFr.background = onInteractionListener.getTheme()
 
             root.setOnClickListener {
                 onInteractionListener.onView(user)

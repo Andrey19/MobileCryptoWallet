@@ -1,9 +1,11 @@
 package com.ar11.mobilecryptowallet.activity
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -17,6 +19,7 @@ import com.ar11.mobilecryptowallet.adapter.WalletsAdapter
 import com.ar11.mobilecryptowallet.auth.AppAuth2
 import com.ar11.mobilecryptowallet.databinding.FragmentWalletsBinding
 import com.ar11.mobilecryptowallet.dto.WalletsModel
+import com.ar11.mobilecryptowallet.viewmodel.CryptoViewModel
 import com.ar11.mobilecryptowallet.viewmodel.WalletsViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,6 +34,8 @@ class WalletsFragment : Fragment() {
     lateinit var auth2: AppAuth2
 
     private val viewModel: WalletsViewModel by activityViewModels()
+
+    private val viewModelCrypto: CryptoViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,6 +74,14 @@ class WalletsFragment : Fragment() {
                 viewModel.deleteWallet(wallet)
             }
 
+            override fun getTheme(): Drawable? {
+                if (viewModelCrypto.getTheme()){
+                    return ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+                } else{
+                    return ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
+                }
+            }
+
         })
         binding.list.adapter = adapter
         viewModel.dataState.observe(viewLifecycleOwner) { state ->
@@ -85,6 +98,13 @@ class WalletsFragment : Fragment() {
                     .show()
             }
 
+        }
+
+        val theme = viewModelCrypto.getTheme()
+        if (theme){
+            binding.wFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+        } else {
+            binding.wFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
         }
 
         viewModel.deletedWallet.observe(viewLifecycleOwner) {

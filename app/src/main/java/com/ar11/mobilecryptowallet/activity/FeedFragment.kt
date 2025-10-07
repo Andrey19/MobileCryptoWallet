@@ -2,10 +2,13 @@ package com.ar11.mobilecryptowallet.activity
 
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -17,6 +20,7 @@ import com.ar11.mobilecryptowallet.activity.CryptoDetailFragment.Companion.crypt
 import com.ar11.mobilecryptowallet.activity.CryptoDetailFragment.Companion.cryptoName
 import com.ar11.mobilecryptowallet.activity.CryptoDetailFragment.Companion.image
 import com.ar11.mobilecryptowallet.activity.CryptoDetailFragment.Companion.imageUrl
+import com.ar11.mobilecryptowallet.activity.CryptoDetailFragment.Companion.isDarkTheme
 import com.ar11.mobilecryptowallet.activity.CryptoDetailFragment.Companion.viewType
 import com.ar11.mobilecryptowallet.adapter.CryptosAdapter
 import com.ar11.mobilecryptowallet.adapter.OnInteractionListener
@@ -34,6 +38,7 @@ class FeedFragment: Fragment() {
 
     private val viewModel: CryptoViewModel by activityViewModels()
     private val authViewModel: Auth2ViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,10 +59,18 @@ class FeedFragment: Fragment() {
                         cryptoAmount = crypto.cryptoAmount
                         cryptoCost = crypto.cryptoCost
                         viewType = "edit"
+                        isDarkTheme = viewModel.getTheme()
                     }
                 )
             }
 
+            override fun getTheme(): Drawable? {
+                if (viewModel.getTheme()){
+                    return ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+                } else{
+                    return ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
+                }
+            }
 
         })
 
@@ -98,6 +111,14 @@ class FeedFragment: Fragment() {
                     viewType = "create"
                 }
             )
+        }
+
+
+        val theme = viewModel.getTheme()
+        if (theme){
+            binding.fFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+        } else {
+            binding.fFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
         }
 
 

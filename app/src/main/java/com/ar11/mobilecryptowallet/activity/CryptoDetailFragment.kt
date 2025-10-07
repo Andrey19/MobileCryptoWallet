@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.ar11.mobilecryptowallet.R
 import com.ar11.mobilecryptowallet.databinding.FragmentCryptoDetailBinding
 import com.ar11.mobilecryptowallet.dto.Cryptos
+import com.ar11.mobilecryptowallet.util.CryptosBooleanArg
 import com.ar11.mobilecryptowallet.util.CryptosDoubleArg
 import com.ar11.mobilecryptowallet.util.CryptosStringArg
 import com.ar11.mobilecryptowallet.viewmodel.CryptoDetailViewModel
@@ -33,6 +35,7 @@ class CryptoDetailFragment : Fragment() {
         var Bundle.cryptoAmount: Double? by CryptosDoubleArg
         var Bundle.cryptoCost: Double? by CryptosDoubleArg
         var Bundle.viewType: String? by CryptosStringArg
+        var Bundle.isDarkTheme: Boolean? by CryptosBooleanArg
     }
 
     private val viewModel: CryptoDetailViewModel by activityViewModels()
@@ -49,6 +52,15 @@ class CryptoDetailFragment : Fragment() {
                 R.id.feedFragment
             )
         }
+
+        val isDarkTheme = arguments?.isDarkTheme ?: false
+        if (isDarkTheme){
+            binding.deCrFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+        } else{
+            binding.deCrFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
+        }
+
+
 
 
         val crypto = Cryptos(

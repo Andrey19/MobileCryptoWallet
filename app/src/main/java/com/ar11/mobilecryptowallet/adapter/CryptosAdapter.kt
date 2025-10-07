@@ -1,5 +1,6 @@
 package com.ar11.mobilecryptowallet.adapter
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -13,6 +14,10 @@ import com.bumptech.glide.request.RequestOptions
 
 interface OnInteractionListener {
     fun onView(crypto: Cryptos) {}
+    fun getTheme(): Drawable? {
+        return null
+    }
+
 }
 
 
@@ -38,6 +43,10 @@ class CryptoViewHolder(
 
     fun bind(crypto: Cryptos) {
         binding.apply {
+
+
+            binding.caCrFr.background = onInteractionListener.getTheme()
+
 
             cryptoName.text = crypto.cryptoName
             cryptoDescription.text = crypto.cryptoDescription

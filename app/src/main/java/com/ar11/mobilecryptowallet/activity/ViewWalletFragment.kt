@@ -5,14 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.ar11.mobilecryptowallet.R
+import com.ar11.mobilecryptowallet.activity.CryptoDetailFragment.Companion.isDarkTheme
 import com.ar11.mobilecryptowallet.adapter.CryptoInWalletAdapter
 import com.ar11.mobilecryptowallet.adapter.OnCryptoInteractionListener
 import com.ar11.mobilecryptowallet.databinding.FragmentWalletViewBinding
 import com.ar11.mobilecryptowallet.dto.CryptosModel
+import com.ar11.mobilecryptowallet.util.CryptosBooleanArg
+import com.ar11.mobilecryptowallet.util.CryptosBooleanArg.getValue
+import com.ar11.mobilecryptowallet.util.CryptosBooleanArg.setValue
 import com.ar11.mobilecryptowallet.util.StringArg
 import com.ar11.mobilecryptowallet.viewmodel.WalletsViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -49,6 +54,7 @@ class ViewWalletFragment : Fragment() {
         binding.inputWalletDescription.text = wallet?.walletDescription
         binding.cryptosAmountValue.text =  wallet?.cryptosCount.toString()
         binding.cryptosCostValue.text = wallet?.cryptosCost.toString()
+
 
 
         val adapter = CryptoInWalletAdapter(object : OnCryptoInteractionListener {

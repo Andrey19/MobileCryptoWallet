@@ -1,6 +1,7 @@
 package com.ar11.mobilecryptowallet.adapter
 
 import android.app.AlertDialog
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
@@ -16,6 +17,10 @@ interface WalletOnInteractionListener {
     fun onEdit(wallet: WalletsModel) {}
     fun onRemove(wallet: WalletsModel) {}
     fun onView(wallet: WalletsModel) {}
+
+    fun getTheme(): Drawable? {
+        return null
+    }
 }
 
 class WalletsAdapter(
@@ -43,6 +48,8 @@ class WalletViewHolder(
             walletDescription.text = wallet.walletDescription
             numCryptos.text = wallet.cryptosCount.toString()
             costs.text = wallet.cryptosCost.toString()
+
+            binding.crWFr.background = walletOnInteractionListener.getTheme()
 
             //menu.visibility = View.INVISIBLE
 

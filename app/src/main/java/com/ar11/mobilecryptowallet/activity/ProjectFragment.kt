@@ -7,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.ar11.mobilecryptowallet.viewmodel.ProjectViewModel
 import com.ar11.mobilecryptowallet.R
 import com.ar11.mobilecryptowallet.databinding.FragmentProjectBinding
+import com.ar11.mobilecryptowallet.viewmodel.CryptoViewModel
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +26,8 @@ import java.io.File
 class ProjectFragment : Fragment() {
 
     private val viewModel: ProjectViewModel by activityViewModels()
+
+    private val viewModelCrypto: CryptoViewModel by activityViewModels()
     private var imageFile: File? = null
 
     override fun onCreateView(
@@ -85,6 +89,13 @@ class ProjectFragment : Fragment() {
                     imageFile = file
                 }
             }
+
+        val theme = viewModelCrypto.getTheme()
+        if (theme){
+            binding.frPr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+        } else {
+            binding.frPr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
+        }
 
 
         binding.imageView.setOnClickListener {

@@ -1,9 +1,11 @@
 package com.ar11.mobilecryptowallet.activity
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -30,6 +32,7 @@ import com.ar11.mobilecryptowallet.adapter.UsersAdapter
 import com.ar11.mobilecryptowallet.databinding.FragmentUserInfoListBinding
 import com.ar11.mobilecryptowallet.dto.Cryptos
 import com.ar11.mobilecryptowallet.model.UserModel2
+import com.ar11.mobilecryptowallet.viewmodel.CryptoViewModel
 import com.ar11.mobilecryptowallet.viewmodel.ListUserInfoViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,6 +44,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 class ListUserInfoFragment : Fragment() {
 
     private val viewModel: ListUserInfoViewModel by activityViewModels()
+
+    private val viewModelCrypto: CryptoViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,6 +68,14 @@ class ListUserInfoFragment : Fragment() {
                     }
                 )
             }
+
+            override fun getTheme(): Drawable? {
+                if (viewModelCrypto.getTheme()){
+                    return ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+                } else{
+                    return ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
+                }
+            }
         })
 
 
@@ -70,6 +83,13 @@ class ListUserInfoFragment : Fragment() {
         binding.list.adapter = adapter
 
         viewModel.refreshUsers()
+
+        val theme = viewModelCrypto.getTheme()
+        if (theme){
+            binding.listUsFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+        } else {
+            binding.listUsFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
+        }
 
         viewModel.usersListData.observe(viewLifecycleOwner) {
             adapter.submitList(it)

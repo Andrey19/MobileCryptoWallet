@@ -20,6 +20,7 @@ interface OnCryptoInteractionListener {
     fun onEdit(crypto: CryptosModel) {}
     fun onRemove(crypto: CryptosModel) {}
     fun onView(crypto: CryptosModel) {}
+
     fun isMenuActive(): Boolean
 }
 
