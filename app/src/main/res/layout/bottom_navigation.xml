@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
-    app:itemBackground="@color/colorPrimary"
+    app:itemBackground="@drawable/black_theme"
     app:itemTextColor="@color/color_primary_black"
     app:labelVisibilityMode="labeled"
     app:menu="@menu/bottom_navigation_menu" />

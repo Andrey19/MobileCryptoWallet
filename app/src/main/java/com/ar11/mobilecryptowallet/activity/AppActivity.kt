@@ -9,8 +9,9 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import androidx.core.view.MenuProvider
-import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import com.ar11.mobilecryptowallet.R
 import com.ar11.mobilecryptowallet.auth.AppAuth2
@@ -20,7 +21,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
-import androidx.core.content.edit
 
 
 @AndroidEntryPoint
@@ -39,7 +39,6 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
         super.onCreate(savedInstanceState)
 
 
-
         viewModelAuth2.data2.observe(this) {
             invalidateOptionsMenu()
         }
@@ -51,11 +50,32 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
         val isDarkTheme = sharedPreferences.getBoolean("isDarkTheme", false)
         viewModelCrypto.setTheme(isDarkTheme)
 
-        viewModelCrypto.isDarkTheme.observe(this) { isDark ->
-            sharedPreferences.edit(commit = true) { putBoolean("isDarkTheme", isDark) }
-        }
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+        if (isDarkTheme){
+            bottomNav.itemBackground = ContextCompat.getDrawable(context, R.drawable.black_theme)
+        } else{
+            bottomNav.itemBackground = ContextCompat.getDrawable(context, R.color.colorPrimary)
+        }
+
+        viewModelCrypto.isDarkTheme.observe(this) { isDark ->
+            {
+                println("---------------------------isDark-------------------------------")
+                println(isDark)
+                println("----------------------------------------------------------")
+                if (isDark){
+                    bottomNav.background = ContextCompat.getDrawable(context, R.drawable.black_theme)
+                    bottomNav.itemBackground = ContextCompat.getDrawable(context, R.drawable.black_theme)
+                } else{
+                    bottomNav.background = ContextCompat.getDrawable(context, R.color.colorPrimary)
+                    bottomNav.itemBackground = ContextCompat.getDrawable(context, R.color.colorPrimary)
+                }
+                sharedPreferences.edit(commit = true) { putBoolean("isDarkTheme", isDark) }
+            }
+        }
+
+
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.action_market -> {
