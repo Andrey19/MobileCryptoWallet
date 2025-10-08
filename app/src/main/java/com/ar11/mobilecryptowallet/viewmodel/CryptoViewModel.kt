@@ -39,6 +39,7 @@ class CryptoViewModel @Inject constructor(
     }
 
     fun setTheme(isDarkTheme: Boolean) {
+        println("-------setTheme-------")
         _isDarkTheme.value = isDarkTheme
     }
     fun getTheme() : Boolean {

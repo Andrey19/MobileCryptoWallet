@@ -75,7 +75,7 @@ class UserInfoFragment : Fragment() {
        val theme = viewModelCrypto.getTheme()
         binding.mySwitch.isChecked = theme
         if (theme){
-            binding.usFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+            binding.usFr.background = ContextCompat.getDrawable(requireContext(), R.color.colorPrimaryDark)
         } else {
             binding.usFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
         }
@@ -84,7 +84,7 @@ class UserInfoFragment : Fragment() {
         binding.mySwitch.setOnCheckedChangeListener {  buttonView, isChecked ->
             viewModelCrypto.setTheme(isChecked)
             if (isChecked) {
-                binding.usFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+                binding.usFr.background = ContextCompat.getDrawable(requireContext(), R.color.colorPrimaryDark)
             } else {
                 binding.usFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
             } }

@@ -92,7 +92,7 @@ class ProjectFragment : Fragment() {
 
         val theme = viewModelCrypto.getTheme()
         if (theme){
-            binding.frPr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+            binding.frPr.background = ContextCompat.getDrawable(requireContext(), R.color.colorPrimaryDark)
         } else {
             binding.frPr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
         }

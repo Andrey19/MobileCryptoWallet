@@ -32,4 +32,5 @@
     <color name="grey_6">#F2F2F2</color>
     <color name="grey_5">#E0E0E0</color>
     <color name="green">#4CAF50</color>
+    <color name="bottom_text_color">#FF000000</color>
 </resources>

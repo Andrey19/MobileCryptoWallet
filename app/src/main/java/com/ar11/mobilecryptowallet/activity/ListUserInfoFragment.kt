@@ -71,7 +71,7 @@ class ListUserInfoFragment : Fragment() {
 
             override fun getTheme(): Drawable? {
                 if (viewModelCrypto.getTheme()){
-                    return ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+                    return ContextCompat.getDrawable(requireContext(), R.color.colorPrimaryDark)
                 } else{
                     return ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
                 }
@@ -86,7 +86,7 @@ class ListUserInfoFragment : Fragment() {
 
         val theme = viewModelCrypto.getTheme()
         if (theme){
-            binding.listUsFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+            binding.listUsFr.background = ContextCompat.getDrawable(requireContext(), R.color.colorPrimaryDark)
         } else {
             binding.listUsFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
         }

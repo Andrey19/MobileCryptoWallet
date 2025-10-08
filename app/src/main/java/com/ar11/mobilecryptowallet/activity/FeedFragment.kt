@@ -66,7 +66,7 @@ class FeedFragment: Fragment() {
 
             override fun getTheme(): Drawable? {
                 if (viewModel.getTheme()){
-                    return ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+                    return ContextCompat.getDrawable(requireContext(), R.color.colorPrimaryDark)
                 } else{
                     return ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
                 }
@@ -116,7 +116,7 @@ class FeedFragment: Fragment() {
 
         val theme = viewModel.getTheme()
         if (theme){
-            binding.fFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+            binding.fFr.background = ContextCompat.getDrawable(requireContext(), R.color.colorPrimaryDark)
         } else {
             binding.fFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
         }

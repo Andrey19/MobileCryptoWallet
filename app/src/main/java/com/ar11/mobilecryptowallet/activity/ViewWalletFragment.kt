@@ -61,7 +61,7 @@ class ViewWalletFragment : Fragment() {
 
         val theme = viewModelCrypto.getTheme()
         if (theme){
-            binding.viWalFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+            binding.viWalFr.background = ContextCompat.getDrawable(requireContext(), R.color.colorPrimaryDark)
         } else {
             binding.viWalFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
         }
@@ -86,7 +86,7 @@ class ViewWalletFragment : Fragment() {
 
             override fun getTheme(): Drawable? {
                 if (viewModelCrypto.getTheme()){
-                    return ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+                    return ContextCompat.getDrawable(requireContext(), R.color.colorPrimaryDark)
                 } else{
                     return ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
                 }

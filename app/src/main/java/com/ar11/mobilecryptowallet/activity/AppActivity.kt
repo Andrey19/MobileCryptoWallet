@@ -3,6 +3,7 @@ package com.ar11.mobilecryptowallet.activity
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -54,25 +55,21 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
         if (isDarkTheme){
-            bottomNav.itemBackground = ContextCompat.getDrawable(context, R.drawable.black_theme)
+            bottomNav.itemBackground = ContextCompat.getDrawable(context, R.color.colorPrimaryDark)
         } else{
             bottomNav.itemBackground = ContextCompat.getDrawable(context, R.color.colorPrimary)
         }
 
         viewModelCrypto.isDarkTheme.observe(this) { isDark ->
-            {
-                println("---------------------------isDark-------------------------------")
-                println(isDark)
-                println("----------------------------------------------------------")
                 if (isDark){
-                    bottomNav.background = ContextCompat.getDrawable(context, R.drawable.black_theme)
-                    bottomNav.itemBackground = ContextCompat.getDrawable(context, R.drawable.black_theme)
-                } else{
                     bottomNav.background = ContextCompat.getDrawable(context, R.color.colorPrimary)
-                    bottomNav.itemBackground = ContextCompat.getDrawable(context, R.color.colorPrimary)
+                    bottomNav.itemBackground = ContextCompat.getDrawable(context, R.color.colorPrimaryDark)
+                } else{
+                    bottomNav.background = ContextCompat.getDrawable(context, R.color.colorPrimaryDark)
+                    bottomNav.itemBackground = ContextCompat.getDrawable(context, R.color.colorWhite)
                 }
                 sharedPreferences.edit(commit = true) { putBoolean("isDarkTheme", isDark) }
-            }
+
         }
 
 

@@ -55,7 +55,7 @@ class CryptoDetailFragment : Fragment() {
 
         val isDarkTheme = arguments?.isDarkTheme ?: false
         if (isDarkTheme){
-            binding.deCrFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+            binding.deCrFr.background = ContextCompat.getDrawable(requireContext(), R.color.colorPrimaryDark)
         } else{
             binding.deCrFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
         }

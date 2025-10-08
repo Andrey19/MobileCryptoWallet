@@ -64,7 +64,7 @@ class EditCryptoWalletFragment : Fragment() {
 
         val theme = viewModelCrypto.getTheme()
         if (theme){
-            binding.crWalFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.black_theme)
+            binding.crWalFr.background = ContextCompat.getDrawable(requireContext(), R.color.colorPrimaryDark)
         } else {
             binding.crWalFr.background = ContextCompat.getDrawable(requireContext(), R.drawable.ic_tab_info_white)
         }
